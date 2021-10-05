@@ -4,7 +4,11 @@
       <div class="dvd-item">
         <div class="dvd-title">{{ dvd.Movie.Name }}</div>
         <img class="dvd-image" :src="dvd.Movie.Image" />
-        <button class="dvd-button">Alugar</button>
+        <button 
+          :style="dvd.IsRented == 'disponível' ? 'background-color: #61bd4f;' : 'background-color: #eb5a46;'" 
+          class="dvd-button">
+            {{dvd.IsRented == 'disponível' ? 'Alugar' : 'Devolver' }}
+        </button>
       </div>
     </div>
   </div>
@@ -39,7 +43,6 @@
   width: 100%;
   margin: 0;
   color: white;
-  background-color: #61bd4f;
 }
 </style>
 
@@ -55,7 +58,11 @@ export default {
     const Service = new WiproService();
 
     Service.dvd.list().then((response) => {
+      
+      console.log(JSON.stringify(response.data.Data))
+
       this.dvds = response.data.Data;
+      
     });
   },
 };

@@ -5,6 +5,7 @@ export interface DvdDto {
     Price: string
     Movie: Movie
     Status: string
+    IsRented: 'disponível' | 'alugado'
 }
 
 export interface RentDto {
